@@ -1,4 +1,4 @@
-install.packages("ape")
+
 install.packages("phytools")
 install.packages("tidytree")
 install.packages("ggtree")
@@ -9,7 +9,6 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("ggtree")
 
 library(ggtree) ##ggtree is mainly used to change the aestehtics of a tree
-library(ape) ##Builds trees and checks for fundamental characteristics of a tree
 library(tidyverse)
 library(tidytree) ##Tidytree allows you to manipulate tree data in a tibble format
 library(phytools)## Adds more tools like midpoint rooting and defining color schemes
