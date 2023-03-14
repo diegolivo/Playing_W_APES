@@ -227,20 +227,6 @@ plot(dropped_tip_cl9)
 name.check(dropped_tip_cl9,names_cl9, data.names = NULL)
 
 ## IMPORTANT NOTE: IF FORMATTING OF NAMES IS INCONSISTENT THEN IT WILL BE DIFFICULT TO KNOW WHERE THE ERRORS ARE!!!!!
-## 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
