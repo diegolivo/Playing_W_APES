@@ -1,13 +1,3 @@
-
-install.packages("phytools")
-install.packages("tidytree")
-install.packages("ggtree")
-install.packages("geiger")
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-
-BiocManager::install("ggtree")
-
 library(ggtree) ##ggtree is mainly used to change the aestehtics of a tree
 library(tidyverse)
 library(tidytree) ##Tidytree allows you to manipulate tree data in a tibble format
@@ -22,19 +12,19 @@ midroot_cl17 <-  read.tree(file = "mpr_Cl17.nwk" ) ## read.tree tells you genera
 
 ##Important note, most commands need a defined object as phylo to run in ape package
 
-ur_cl17 <- read.tree(file = "ur_Cl_17.nwk" ) ##Comparing against unrooted tree (ur)
+unrooted_cl17 <- read.tree(file = "ur_Cl_17.nwk" ) ##Comparing against unrooted tree (ur)
 
 is.rooted(midroot_cl17) ##Will inform you if your tree is rooted with true or false 
           
-is.rooted(ur_cl17) ##compare against unrooted tree
+is.rooted(urooted_cl17) ##compare against unrooted tree
 
-comparePhylo(ur_cl17, midroot_cl17) ##Will inform you and compare number of nodes, tips/tip labels, the rooting differences, and splits
+comparePhylo(urooted_cl17, midroot_cl17) ##Will inform you and compare number of nodes, tips/tip labels, the rooting differences, and splits
 
-checkValidPhylo(ur_cl17) ##CheckValidPHylo will inform you the elements of object phy and inform you if errors when converted to the phy object
+checkValidPhylo(unrooted_cl17) ##CheckValidPHylo will inform you the elements of object phy and inform you if errors when converted to the phy object
 
 checkValidPhylo(midroot_cl17)
 
-plot(ur_cl17) ##When you have defined phy objects you can plot the trees in RStudio and visualize while you manipulate
+plot(urooted_cl17) ##When you have defined phy objects you can plot the trees in RStudio and visualize while you manipulate
 
 plot(midroot_cl17)
 
@@ -46,8 +36,6 @@ labeled_nodes_mpr_17 <- midroot_cl17 |> makeNodeLabel(method = "number") ##This 
 ##WARNING: MakeNodeLabels will NOT actually correspond to the actual nodes, this WILL THROW OFF YOUR PARSING OF A TREE
 
 nodelabels(labeled_nodes_mpr_17) ##Allows you to see how the nodes are defined in seperate list, this is still confusinf when the command is run
-
-
 
 rotated_node5_mpr_17 <- rotate(labeled_nodes_mpr_17, node = c("'MH973752 C17'", "'KY487927 C17'")) ##You can rotate the tips in a clade with the rotate function. define the two tips you want to rotate with node = c(). IN this case I rotated the two tips in Node5
 
@@ -226,7 +214,3 @@ plot(dropped_tip_cl9)
 name.check(dropped_tip_cl9,names_cl9, data.names = NULL)
 
 ## IMPORTANT NOTE: IF FORMATTING OF NAMES IS INCONSISTENT THEN IT WILL BE DIFFICULT TO KNOW WHERE THE ERRORS ARE!!!!!
-
-
-
-
