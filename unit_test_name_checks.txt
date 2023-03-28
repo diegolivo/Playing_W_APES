@@ -1,0 +1,31 @@
+library(ape)
+library(geiger)
+
+#The name check
+mpr_cl17 <-  read.tree(file = "mpr_Cl17.nwk" ) ## Load a tree
+names_cl17 <- read.csv("names_cluster_17.csv")##Import  CSV with row.names =1 to indicate that geiger is looking at row one for comparative analysis for tip names, header = TRUE keeps the names of coluns thesame
+
+name.check(mpr_cluster17, names_cl17, data.names = NULL, header = TRUE, row.names = 1) ##For name.check, the command wants an input of a tree, dataset
+
+##data.names = NULL will look for the names of the tips from both tree without looking at order
+
+name.check(fxd_gtr80_cluster17, names_cl17, data.names = TRUE) ##Changing data.names will tell you that it did not find the order of tip names based on the order of the ree
+
+##Playing around with different inputs and outputs with geiger name.check()
+
+##in this example I used cluster 17 that has KT732833 title, this is from an insect but we will remove it for a test
+
+
+name.check(mpr_Cl17, names_cl17, data.names = NULL) ##Without editing the tree or dataset the output will say OK meaning that all the data from the tree is in the dataset we chose
+
+
+dropped_tip_cl17 <- drop.tip(mpr_cl17, tip= "KT732833", trim.internal = TRUE, subtree = FALSE,
+                            root.edge = 0, rooted = is.rooted(mpr_cl17), collapse.singles = FALSE,
+                            interactive = FALSE) ##dropping the KT732833 sequence tip
+
+plot(dropped_tip_cl17)
+
+##Now when we check it, data_not_tree will inform us of sequences in the dataset not present in the tree
+##IF we didn't removed the name from our dataset and instead then we will recieve tree_not_data meaning sequence in tree is not found in data
+
+name.check(dropped_tip_cl17,names_cl17, data.names = NULL)
