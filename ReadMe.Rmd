@@ -1,0 +1,28 @@
+The Playing_with_Apes repo contains packages that are available in R that priortize analyzing phylogenetic trees through various methods. The primary packages used in this repo are ggtreee, ape, geiger and phytools. The purpose of the repo is to modify trees to improve the accuarcy and visualization of the trees. These packages are available and were not created by me, but I placed them all together to help those who want to improve the quality of their trees. 
+
+
+The following packages need to be active before any other command can be executed:
+```{r setup}
+##install.packages(geiger)
+##install.packages(ggtree)
+##install.packages(ape)
+##install.packages(phytools)
+library(geiger)
+library(ggtree)
+library(ape)
+library(phytools)
+```
+
+
+Additionally, R does not recognize a phylogenetic tree as an object, but with the packages installed, we can define our tree files as a tree object that is defined by the apes package.
+```{r tree_objects}
+
+tree_object <-  read.tree(file = "treefile.nwk" ) 
+
+```
+
+When this object is defined we can visualize the tree object with the plot function that we can start to modify the trees with more complex commands in R
+
+```{r plot}
+plot(tree_object)
+```
